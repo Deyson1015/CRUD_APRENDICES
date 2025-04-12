@@ -17,9 +17,7 @@ class Aprendiz
             $query = "SELECT 
                 a.id, 
                 a.primer_nombre, 
-                a.segundo_nombre, 
                 a.primer_apellido, 
-                a.segundo_apellido, 
                 td.tipo AS Tipo_documento,
                 a.documento, 
                 g.genero, 
@@ -40,7 +38,26 @@ class Aprendiz
     public function obtenerAprendiz($id)
     {
         try {
-            $sql = "SELECT * FROM aprendices WHERE id = :id";
+            $sql = " SELECT 
+                    a.id,
+                    a.primer_nombre,
+                    a.segundo_nombre,
+                    a.primer_apellido,
+                    a.segundo_apellido,
+                    td.tipo AS Tipo_documento,
+                    a.documento,
+                    g.genero,
+                    gp.grupo AS grupo_sanguineo,
+                    pf.nombre AS programa_formacion,
+                    ap.fecha_inicio,
+                    ap.fecha_fin
+                FROM aprendiz_programa AS ap
+                JOIN aprendices AS a ON ap.id_aprendiz = a.id
+                JOIN programa_formacion AS pf ON ap.id_programa_formacion = pf.id
+                JOIN generos AS g ON a.id_genero = g.id
+                JOIN tipo_documento AS td ON a.id_tipo_documento = td.id
+                JOIN grupo_sanguineo AS gp ON a.id_grupo_sanguineo = gp.id
+                WHERE a.id = :id ";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
@@ -56,6 +73,72 @@ class Aprendiz
           
     }
     
+    public function asignarPrograma($id_aprendiz, $id_progrma, $fecha_inicio, $fecha_fin)
+    {
+        try {
+            $query = "INSERT INTO aprendiz_programa (id_aprendiz, id_programa_formacion, fecha_inicio, fecha_fin) 
+                      VALUES (:id_aprendiz, :id_programa_formacion, :fecha_inicio, :fecha_fin)";
+    
+            $stmt = $this->conn->prepare($query);
+            return $stmt->execute([
+                ':id_aprendiz' => $id_aprendiz,
+                ':id_programa_formacion' => $id_progrma,
+                ':fecha_inicio' => $fecha_inicio,
+                ':fecha_fin' => $fecha_fin
+            ]);
+        } catch (Exception $e) {
+            throw new Exception("Error al asignar el programa: " . $e->getMessage());
+        }
+    }
+
+    public function verGeneros()
+    {
+        try {
+            $query = "SELECT * FROM generos";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            throw new Exception("Error al obtener los géneros: " . $e->getMessage());
+        }
+    }
+
+    public function verTipoDocumento()
+    {
+        try {
+            $query = "SELECT * FROM tipo_documento";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            throw new Exception("Error al obtener los tipos de documento: " . $e->getMessage());
+        }
+    }
+
+    public function verGrupoSanguineo()
+    {
+        try {
+            $query = "SELECT * FROM grupo_sanguineo";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            throw new Exception("Error al obtener los grupos sanguíneos: " . $e->getMessage());
+        }
+    }
+    
+    public function verProgramaFormacion()
+    {
+        try {
+            $query = "SELECT * FROM programa_formacion";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            throw new Exception("Error al obtener los programas de formación: " . $e->getMessage());
+        }
+    }
+
 
     public function crearAprendiz($data)
     {
@@ -119,13 +202,5 @@ class Aprendiz
     }
 }
 
-
-
-$aprendiz = new Aprendiz();
-$aprendiz->eliminarAprendiz(3);
-$lista = $aprendiz->verAprendices();
-foreach ($lista as $aprendiz) {
-    echo $aprendiz['primer_nombre'] . " " . $aprendiz['primer_apellido'] . "<br>";
-}
 
 
