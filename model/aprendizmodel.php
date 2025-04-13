@@ -1,13 +1,13 @@
 <?php
-require_once 'database/conexion.php';
 
-class Aprendiz
+class Aprendizmodel
 
 { 
     private PDO $conn;
 
     public function __construct()
     {
+        require_once("C://laragon/www/CRUD_APRENDICES/database/conexion.php");
         $this->conn = (new Database())->getConnection();
     }
 
@@ -80,22 +80,16 @@ class Aprendiz
           
     }
     
-    public function asignarPrograma($id_aprendiz, $id_progrma, $fecha_inicio, $fecha_fin)
-    {
-        try {
-            $query = "INSERT INTO aprendiz_programa (id_aprendiz, id_programa_formacion, fecha_inicio, fecha_fin) 
-                      VALUES (:id_aprendiz, :id_programa_formacion, :fecha_inicio, :fecha_fin)";
-    
-            $stmt = $this->conn->prepare($query);
-            return $stmt->execute([
-                ':id_aprendiz' => $id_aprendiz,
-                ':id_programa_formacion' => $id_progrma,
-                ':fecha_inicio' => $fecha_inicio,
-                ':fecha_fin' => $fecha_fin
-            ]);
-        } catch (Exception $e) {
-            throw new Exception("Error al asignar el programa: " . $e->getMessage());
-        }
+    public function asignarPrograma($id_aprendiz, $id_programa, $fecha_inicio, $fecha_fin) {
+        $query = "INSERT INTO aprendiz_programa (id_aprendiz, id_programa, fecha_inicio, fecha_fin) 
+        VALUES (:id_aprendiz, :id_programa, :fecha_inicio, :fecha_fin)";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id_aprendiz', $id_aprendiz);
+        $stmt->bindParam(':id_programa', $id_programa);
+        $stmt->bindParam(':fecha_inicio', $fecha_inicio);
+        $stmt->bindParam(':fecha_fin', $fecha_fin);
+        return $stmt->execute();
     }
 
     public function verGeneros()
@@ -149,25 +143,28 @@ class Aprendiz
 
     public function crearAprendiz($data)
     {
-        $query = "INSERT INTO aprendices (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, id_tipo_documento, documento, telefono, correo, fecha_nacimiento, id_genero, id_grupo_sanguineo) 
-                  VALUES (:primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :id_tipo_documento, :documento, telefono, correo, fecha_nacimiento, :id_genero, :id_grupo_sanguineo)";
+        $query = "INSERT INTO aprendices 
+            (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, id_tipo_documento, documento, telefono, correo, fecha_nacimiento, id_genero, id_grupo_sanguineo) 
+            VALUES 
+            (:primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :id_tipo_documento, :documento, :telefono, :correo, :fecha_nacimiento, :id_genero, :id_grupo_sanguineo)";
     
         $stmt = $this->conn->prepare($query);
-        return $stmt->execute([
-            ':primer_nombre' => $data['primer_nombre'],
-            ':segundo_nombre' => $data['segundo_nombre'],
-            ':primer_apellido' => $data['primer_apellido'],
-            ':segundo_apellido' => $data['segundo_apellido'],
-            ':id_tipo_documento' => $data['id_tipo_documento'],
-            ':documento' => $data['documento'],
-            ':telefono' => $data['telefono'],
-            ':correo' => $data['correo'],
-            ':fecha_nacimiento' => $data['fecha_nacimiento'],
-            ':id_genero' => $data['id_genero'],
-            ':id_grupo_sanguineo' => $data['id_grupo_sanguineo']
-        ]);
-        
+    
+        $stmt->bindParam(":primer_nombre", $data['primer_nombre']);
+        $stmt->bindParam(":segundo_nombre", $data['segundo_nombre']);
+        $stmt->bindParam(":primer_apellido", $data['primer_apellido']);
+        $stmt->bindParam(":segundo_apellido", $data['segundo_apellido']);
+        $stmt->bindParam(":id_tipo_documento", $data['id_tipo_documento']);
+        $stmt->bindParam(":documento", $data['documento']);
+        $stmt->bindParam(":telefono", $data['telefono']);
+        $stmt->bindParam(":correo", $data['correo']);
+        $stmt->bindParam(":fecha_nacimiento", $data['fecha_nacimiento']);
+        $stmt->bindParam(":id_genero", $data['id_genero']);
+        $stmt->bindParam(":id_grupo_sanguineo", $data['id_grupo_sanguineo']);
+    
+        return ($stmt->execute()) ? $this->conn->lastInsertId() : false;
     }
+    
 
     public function actualizarAprendiz( $id, $data)
     {
@@ -187,20 +184,19 @@ class Aprendiz
                 WHERE id = :id";
     
             $stmt = $this->conn->prepare($query);
-            return $stmt->execute([
-                ':id' => $id,
-                ':primer_nombre' => $data['primer_nombre'],
-                ':segundo_nombre' => $data['segundo_nombre'],
-                ':primer_apellido' => $data['primer_apellido'],
-                ':segundo_apellido' => $data['segundo_apellido'],
-                ':id_tipo_documento' => $data['id_tipo_documento'],
-                ':documento' => $data['documento'],
-                ':telefono' => $data['telefono'],
-                ':correo' => $data['correo'],
-                ':fecha_nacimiento' => $data['fecha_nacimiento'],
-                ':id_genero' => $data['id_genero'],
-                ':id_grupo_sanguineo' => $data['id_grupo_sanguineo']
-            ]);
+            $stmt->bindParam(":id", $id);
+            $stmt->bindParam(":primer_nombre", $data['primer_nombre']);
+            $stmt->bindParam(":segundo_nombre", $data['segundo_nombre']);
+            $stmt->bindParam(":primer_apellido", $data['primer_apellido']);
+            $stmt->bindParam(":segundo_apellido", $data['segundo_apellido']);
+            $stmt->bindParam(":id_tipo_documento", $data['id_tipo_documento']);
+            $stmt->bindParam(":documento", $data['documento']);
+            $stmt->bindParam(":telefono", $data['telefono']);
+            $stmt->bindParam(":correo", $data['correo']);
+            $stmt->bindParam(":fecha_nacimiento", $data['fecha_nacimiento']);
+            $stmt->bindParam(":id_genero", $data['id_genero']);
+            $stmt->bindParam(":id_grupo_sanguineo", $data['id_grupo_sanguineo']);
+            return ($stmt->execute()) ? true : false;
         } catch (Exception $e) {
             throw new Exception("Error al actualizar el aprendiz: " . $e->getMessage());
         }
