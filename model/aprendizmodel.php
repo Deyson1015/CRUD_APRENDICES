@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../database/conexion.php';
+require_once 'database/conexion.php';
 
 class Aprendiz
 
@@ -20,6 +20,9 @@ class Aprendiz
                 a.primer_apellido, 
                 td.tipo AS Tipo_documento,
                 a.documento, 
+                a.telefono,
+                a.correo,
+                a.fecha_nacimiento,
                 g.genero, 
                 gp.grupo AS Grupo_sanguineo
             FROM aprendices AS a
@@ -46,9 +49,13 @@ class Aprendiz
                     a.segundo_apellido,
                     td.tipo AS Tipo_documento,
                     a.documento,
+                    a.telefono,
+                    a.correo,
+                    a.fecha_nacimiento,
                     g.genero,
                     gp.grupo AS grupo_sanguineo,
                     pf.nombre AS programa_formacion,
+                    pf.nivel,
                     ap.fecha_inicio,
                     ap.fecha_fin
                 FROM aprendiz_programa AS ap
@@ -142,8 +149,8 @@ class Aprendiz
 
     public function crearAprendiz($data)
     {
-        $query = "INSERT INTO aprendices (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, id_tipo_documento, documento, id_genero, id_grupo_sanguineo) 
-                  VALUES (:primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :id_tipo_documento, :documento, :id_genero, :id_grupo_sanguineo)";
+        $query = "INSERT INTO aprendices (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, id_tipo_documento, documento, telefono, correo, fecha_nacimiento, id_genero, id_grupo_sanguineo) 
+                  VALUES (:primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :id_tipo_documento, :documento, telefono, correo, fecha_nacimiento, :id_genero, :id_grupo_sanguineo)";
     
         $stmt = $this->conn->prepare($query);
         return $stmt->execute([
@@ -153,6 +160,9 @@ class Aprendiz
             ':segundo_apellido' => $data['segundo_apellido'],
             ':id_tipo_documento' => $data['id_tipo_documento'],
             ':documento' => $data['documento'],
+            ':telefono' => $data['telefono'],
+            ':correo' => $data['correo'],
+            ':fecha_nacimiento' => $data['fecha_nacimiento'],
             ':id_genero' => $data['id_genero'],
             ':id_grupo_sanguineo' => $data['id_grupo_sanguineo']
         ]);
@@ -168,7 +178,10 @@ class Aprendiz
                 primer_apellido = :primer_apellido, 
                 segundo_apellido = :segundo_apellido, 
                 id_tipo_documento = :id_tipo_documento, 
-                documento = :documento, 
+                documento = :documento,
+                telefono = :telefono,
+                correo = :correo,
+                fecha_nacimiento = :fecha_nacimiento, 
                 id_genero = :id_genero, 
                 id_grupo_sanguineo = :id_grupo_sanguineo 
                 WHERE id = :id";
@@ -182,6 +195,9 @@ class Aprendiz
                 ':segundo_apellido' => $data['segundo_apellido'],
                 ':id_tipo_documento' => $data['id_tipo_documento'],
                 ':documento' => $data['documento'],
+                ':telefono' => $data['telefono'],
+                ':correo' => $data['correo'],
+                ':fecha_nacimiento' => $data['fecha_nacimiento'],
                 ':id_genero' => $data['id_genero'],
                 ':id_grupo_sanguineo' => $data['id_grupo_sanguineo']
             ]);
