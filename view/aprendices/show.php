@@ -1,10 +1,35 @@
 <?php
-    require_once("C://laragon/www/CRUD_APRENDICES/view/head/head.php");
-    require_once("C://laragon/www/CRUD_APRENDICES/controller/aprendizController.php");
+    require_once("C://xampp/htdocs/CRUD_APRENDICES/view/head/head.php");
+    require_once("C://xampp/htdocs/CRUD_APRENDICES/controller/aprendizController.php");
     $aprendiz = new AprendizController();
     $date= $aprendiz->show($_GET['id']);
 ?>
 <h2 class="text-center">Detalles del Aprendiz</h2>
+<div>
+    <a href="/CRUD_APRENDICES/view/aprendices/index.php" class="btn btn-primary">Volver</a>
+    <a href="/CRUD_APRENDICES/view/aprendices/editar.php?id=<?= $date['id'] ?>" class="btn btn-warning">Editar</a>
+    <a  class = "btn btn-danger">Eliminar</a>
+    <div class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">¿Desea eliminar el Aprendiz?</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p>Una vez eliminado no se podra recuperar el aprendiz</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <a href="eliminar.php?id=<?= $date['id']?>"class="btn btn-danger">Eliminar</button>
+        
+        </div>
+        </div>
+    </div>
+    </div>
+   
+
+</div>
 <table class ="container fluid-table table table-striped table-bordered table-hover table-sm">
     <thead class="table-dark">
         <tr>
@@ -101,5 +126,5 @@
 </table>
 
 <?php
-require_once("C://laragon/www/CRUD_APRENDICE/view/head/footer.php");
+require_once("C://xampp/htdocs/CRUD_APRENDICES/view/footer/footer.php");
 ?>

@@ -1,5 +1,5 @@
 <?php
-    require_once("C:/laragon/www/CRUD_APRENDICES/view/head/head.php");
+    require_once("C:/xampp/htdocs/CRUD_APRENDICES/view/head/header.php");
 ?>
     
     <form action="store.php" method="POST" autocomplete="off">
@@ -132,5 +132,5 @@
 </form>
 
 <?php
-    require_once("C:/laragon/www/CRUD_APRENDICES/view/head/footer.php");
+    require_once("C:/xampp/htdocs/CRUD_APRENDICES/view/footer/footer.php");
 ?>

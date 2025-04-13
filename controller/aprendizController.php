@@ -37,6 +37,17 @@
                 return "Error: " . $e->getMessage();        
             }
         }
+
+        public function index() {
+            try {
+                return ($this->aprendizModel->index()) ? $this->aprendizModel->index() : false;
+            } catch (Exception $e) {
+                return "Error: " . $e->getMessage();
+            }
+
+            
+    
+        }
     }
       
 

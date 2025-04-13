@@ -24,9 +24,8 @@
                 Aprendices
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/CRUD_APRENDICES/views/aprendiz/show.php">Ver aprendices</a></li>
-                <li><a class="dropdown-item" href="/CRUD_APRENDICES/views/aprendiz/crear.php">Crear aprendices</a></li>
-              </ul>
+                <li><a class="dropdown-item" href="/CRUD_APRENDICES/view/aprendices/show.php">Aprendices</a></li>
+                <li><a class="dropdown-item" href="/CRUD_APRENDICES/view/aprendices/crear.php">Agregar nuevo Aprendiz</a>
             </li>
           </ul>
 

@@ -11,7 +11,7 @@ class Aprendizmodel
         $this->conn = (new Database())->getConnection();
     }
 
-    public function verAprendices()
+    public function index()
     {   
         try {
                 $sql = "SELECT
