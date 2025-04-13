@@ -64,7 +64,7 @@
         <div class="card-header bg-info">Información Complementaria</div>
         <div class="card-body row g-3">
             <div class="col-md-6">
-                <label for="sexo" class="form-label">Sexo</label>
+                <label for="sexo" class="form-label">Generos</label>
                 <select class="form-select" name="sexo" required>
                     <option selected disabled>Seleccione una opción</option>
                     <option value="1">Masculino</option>

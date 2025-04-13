@@ -9,42 +9,35 @@
             $this->aprendizModel = new AprendizModel();
         }
 
-        public function crearAprendiz($data) {
-            $id_aprendiz = $this->aprendizModel->crearAprendiz($data);
-            return($id_aprendiz!=false) ? header("Location:show.php?id_aprendiz=". $id_aprendiz) : header("Location:crear.php"); 
+        public function guardarAprendiz($data) {
+            try{
+                $id = $this->aprendizModel->crearAprendiz($data);
+                return($id!=false) ? header("Location:show.php?id_aprendiz=". $id) : header("Location:crear.php"); 
 
-            if ($id_aprendiz) {  
-                $this->aprendizModel->asignarPrograma(
-                $id_aprendiz, 
-                $data['programa'],
-                $data['fecha_inicio'],
-                $data['fecha_fin']
-            );
-                
-            }
-        header("Location: index.php"); // Redirigir a la página principal después de crear el aprendiz
-        }
-
-
-        public function verAprendices()
-        {
-            try {
-                return $this->aprendizModel->verAprendices();
+                if ($id) {  
+                    $this->aprendizModel->asignarPrograma(
+                    $id_aprendiz, 
+                    $data['programa'],
+                    $data['fecha_inicio'],
+                    $data['fecha_fin']
+                );
+                    
+                }
+            header("Location: index.php"); // Redirigir a la página principal después de crear el aprendiz
             } catch (Exception $e) {
-                echo "Error: " . $e->getMessage();
+                return "Error: " . $e->getMessage();        
             }
         }
 
-        public function obtenerAprendiz($id)
-        {
+
+        public function show($id) {
             try {
-                return $this->aprendizModel->obtenerAprendiz($id);
+                return ($this->aprendizModel->show($id) != false) ? $this->aprendizModel->show($id) : header("Location: index.php");
             } catch (Exception $e) {
-                echo "Error: " . $e->getMessage();
+                return "Error: " . $e->getMessage();        
             }
         }
     }
-
-
+      
 
 ?>
