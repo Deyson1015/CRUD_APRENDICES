@@ -102,18 +102,22 @@
             <div class="col-md-4">
                 <label for="programa" class="form-label">Programa</label>
                 <select class="form-select" name="programa" required>
-                    <option value="1" <?= ($date['programa_formacion'] == 1) ? 'selected' : '' ?>>Técnico en Sistemas</option>
-                    <option value="2" <?= ($date['programa_formacion'] == 2) ? 'selected' : '' ?>>Técnico en Asistencia Administrativa</option>
-                    <option value="3" <?= ($date['programa_formacion'] == 3) ? 'selected' : '' ?>>Técnico en Cocina</option>
-                    <option value="4" <?= ($date['programa_formacion'] == 4) ? 'selected' : '' ?>>Técnico en Contabilidad</option>
-                    <option value="5" <?= ($date['programa_formacion'] == 5) ? 'selected' : '' ?>>Técnico en Manejo Ambiental</option>
-                    <option value="6" <?= ($date['programa_formacion'] == 6) ? 'selected' : '' ?>>Técnico en Logística Empresarial</option>
-                    <option value="7" <?= ($date['programa_formacion'] == 7) ? 'selected' : '' ?>>Tecnólogo en ADSO</option>
-                    <option value="8" <?= ($date['programa_formacion'] == 8) ? 'selected' : '' ?>>Tecnólogo en Gestión Administrativa</option>
-                    <option value="9" <?= ($date['programa_formacion'] == 9) ? 'selected' : '' ?>>Tecnólogo en Talento Humano</option>
-                    <option value="10" <?= ($date['programa_formacion'] == 10) ? 'selected' : '' ?>>Tecnólogo en Logística</option>
-                    <option value="11" <?= ($date['programa_formacion'] == 11) ? 'selected' : '' ?>>Tecnólogo en Agropecuaria</option>
-                    <option value="12" <?= ($date['programa_formacion'] == 12) ? 'selected' : '' ?>>Tecnólogo en Control Ambiental</option>
+                <optgroup label="Técnicos">
+                        <option value="1" <?= ($date['programa_formacion'] == 1) ? 'selected' : '' ?>>Técnico en Sistemas</option>
+                        <option value="2" <?= ($date['programa_formacion'] == 2) ? 'selected' : '' ?>>Técnico en Asistencia Administrativa</option>
+                        <option value="3" <?= ($date['programa_formacion'] == 3) ? 'selected' : '' ?>>Técnico en Cocina</option>
+                        <option value="4" <?= ($date['programa_formacion'] == 4) ? 'selected' : '' ?>>Técnico en Contabilidad</option>
+                        <option value="5" <?= ($date['programa_formacion'] == 5) ? 'selected' : '' ?>>Técnico en Manejo Ambiental</option>
+                        <option value="6" <?= ($date['programa_formacion'] == 6) ? 'selected' : '' ?>>Técnico en Logística Empresarial</option>
+                    </optgroup>
+                    <optgroup label="Tecnólogos">
+                        <option value="7" <?= ($date['programa_formacion'] == 7) ? 'selected' : '' ?>>Tecnólogo en ADSO</option>
+                        <option value="8" <?= ($date['programa_formacion'] == 8) ? 'selected' : '' ?>>Tecnólogo en Gestión Administrativa</option>
+                        <option value="9" <?= ($date['programa_formacion'] == 9) ? 'selected' : '' ?>>Tecnólogo en Talento Humano</option>
+                        <option value="10" <?= ($date['programa_formacion'] == 10) ? 'selected' : '' ?>>Tecnólogo en Logística</option>
+                        <option value="11" <?= ($date['programa_formacion'] == 11) ? 'selected' : '' ?>>Tecnólogo en Agropecuaria</option>
+                        <option value="12" <?= ($date['programa_formacion'] == 12) ? 'selected' : '' ?>>Tecnólogo en Control Ambiental</option>
+                    </optgroup>
                 </select>
             </div>
             <div class="col-md-4">

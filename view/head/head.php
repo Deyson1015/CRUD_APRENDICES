@@ -21,7 +21,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark mb-4">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="/CRUD_APRENDICES/index.php">
-        <img src="/CRUD_APRENDICES/view/img/logoSena.png" alt="Logo SENA" width="35" height="30" class="me-2">
+        <img src="/CRUD_APRENDICES/view/img/logoSena.png" alt="Logo SENA" width="30" height="30" class="me-2">
         <span class="fw-bold">Gestión Aprendices</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">

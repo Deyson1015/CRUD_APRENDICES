@@ -5,10 +5,21 @@
     $rows = $aprendiz->index();
 ?>
 
-<div class="mb-3">
-    <a href="/CRUD_APRENDICES/view/aprendices/crear.php" class="btn btn-success mb-3">
-        Agregar un Nuevo Aprendiz
+<div class="mb-3 d-flex justify-content-center gap-3">
+    <a href="/CRUD_APRENDICES/index.php" class="btn btn-primary mb-3">
+        <i class="fas fa-arrow-left"></i>
     </a>
+    <a href="/CRUD_APRENDICES/view/aprendices/crear.php" class="btn btn-primary mb-3">
+         <i class="fas fa-user-plus"></i> Agregar Aprendiz
+    </a>
+</div>
+
+<div class="table-responsive">
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white text-center py-3 rounded-top">
+            <h2 class="mb-0 ">Lista de Aprendices</h2>
+        </div>
+    </div>
 </div>
 
 <div class="table-responsive">

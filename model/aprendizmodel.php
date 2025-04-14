@@ -77,6 +77,31 @@ class Aprendizmodel
     
     public function crearAprendiz($data) {
         try {
+
+            $stmt = $this->conn->prepare("SELECT COUNT(*) FROM aprendices WHERE documento = ?");
+            $stmt->execute([$data['documento']]);
+            $countDocumento = $stmt->fetchColumn();
+    
+            if ($countDocumento > 0) {
+                return "El número de documento ya está registrado.";
+            }
+
+            $stmt = $this->conn->prepare("SELECT COUNT(*) FROM aprendices WHERE correo = ?");
+            $stmt->execute([$data['correo']]);
+            $countCorreo = $stmt->fetchColumn();
+    
+            if ($countCorreo > 0) {
+                return "El correo electrónico ya está registrado.";
+            }
+
+            $stmt = $this->conn->prepare("SELECT COUNT(*) FROM aprendices WHERE telefono = ?");
+            $stmt->execute([$data['telefono']]);
+            $countTelefono = $stmt->fetchColumn();
+    
+            if ($countTelefono > 0) {
+                return "El número de teléfono ya está registrado.";
+            }
+            
             $sql = "INSERT INTO aprendices 
                     (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, id_tipo_documento, documento, telefono, correo, fecha_nacimiento, id_genero, id_grupo_sanguineo) 
                     VALUES (:primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :id_tipo_documento, :documento, :telefono, :correo, :fecha_nacimiento, :id_genero, :id_grupo_sanguineo)";

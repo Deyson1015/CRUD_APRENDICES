@@ -11,19 +11,21 @@
 
         public function guardarAprendiz($data) {
             try {
+            
                 $id = $this->aprendizModel->crearAprendiz($data);
-        
-                if ($id !== false and is_numeric($id)) {
-                    header("Location:show.php?id_aprendiz=" . $id);
-                    exit();
-                } else {
+                if ($id !== false && is_numeric($id)) {
+                    header("Location: ../../view/aprendices/show.php?id_aprendiz=" . $id);
                     exit(); 
+                } else {
+                    
+                    exit('Error al guardar el aprendiz');
                 }
             } catch (Exception $e) {
                 return "Error general: " . $e->getMessage();
                 exit();
             }
         }
+        
 
         public function show($id) {
             try {
