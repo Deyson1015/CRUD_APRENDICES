@@ -4,8 +4,8 @@
     $aprendiz = new AprendizController();
     $date= $aprendiz->show($_GET['id']);
 ?>
-<form action="update.php" method="POST" autocomplete="off">
-    
+<form action="update.php?id=<?= $date['id'] ?>" method="POST" autocomplete="off">
+
     <div class="card mb-4">
         <div class="card-header bg-success text-white text-center py-3 rounded-top">
             <h2 class="mb-0">Editar Aprendiz</h2>
@@ -35,7 +35,6 @@
         </div>
     </div>
 
-    <!-- Identificación y Contacto -->
     <div class="card mb-4">
         <div class="card-header bg-success">Identificación y Contacto</div>
         <div class="card-body row g-3">
@@ -74,7 +73,7 @@
             <div class="col-md-6">
                 <label for="id_genero" class="form-label">Género</label>
                 <select class="form-select" name="id_genero" required>
-                    <option value="" selected disabled>Seleccione una opción</option>
+                    <option value="" disabled>Seleccione una opción</option>
                     <option value="1" <?= ($date['genero'] == 1) ? 'selected' : '' ?>>Masculino</option>
                     <option value="2" <?= ($date['genero'] == 2) ? 'selected' : '' ?>>Femenino</option>
                     <option value="3" <?= ($date['genero'] == 3) ? 'selected' : '' ?>>Otro</option>
@@ -128,11 +127,12 @@
         </div>
     </div>
 
-    <div class=" text-center mt-4">
+    <div class="text-center mt-4">
         <button type="submit" class="btn btn-success me-2">Actualizar</button>
         <a class="btn btn-danger" href="index.php">Cancelar</a>
     </div>
 </form>
+
 
 <?php
 require_once("C://xampp/htdocs/CRUD_APRENDICES/view/head/footer.php");
