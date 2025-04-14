@@ -11,7 +11,6 @@
         </div>
         <div class="card-body">
 
-            <!-- Botones de acción -->
             <div class="mb-4 d-flex justify-content-center gap-3">
                 <a href="/CRUD_APRENDICES/view/aprendices/index.php" class="btn btn-primary">
                     <i class="fas fa-arrow-left"></i>
@@ -24,7 +23,6 @@
                 </button>
             </div>
 
-            <!-- Tabla de detalles -->
             <div class="table-responsive">
                 <table class="table table-bordered table-hover table-striped">
                     <thead class="table-dark text-center">
@@ -81,7 +79,6 @@
     </div>
 </div>
 
-<!-- Modal de confirmación de eliminación -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

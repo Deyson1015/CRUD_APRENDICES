@@ -37,22 +37,22 @@
                         <td class="text-center"><?= $row['telefono']; ?></td>
                         <td class="text-center"><?= $row['edad']; ?> años</td>
                         <td class="text-center">
-                            <!-- Ver -->
+            
                             <a href="show.php?id=<?= $row['id'] ?>" class="btn btn-info btn-sm">
                                 <i class="fas fa-eye"></i>
                             </a>
-                            <!-- Editar -->
+                            
                             <a href="editar.php?id=<?= $row['id'] ?>" class="btn btn-success btn-sm">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <!-- Botón que lanza el modal -->
+                            
                             <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $row['id'] ?>">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>
 
-                    <!-- Modal de confirmación de eliminación -->
+                
                     <div class="modal fade" id="deleteModal<?= $row['id'] ?>" tabindex="-1" aria-labelledby="deleteModalLabel<?= $row['id'] ?>" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -61,7 +61,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>¿Estás seguro de eliminar al aprendiz <strong><?= $row['Nombre'] . " " . $row['Apellido']; ?></strong>? Esta acción no se puede deshacer.</p>
+                                    <p>¿Está seguro que desea eliminar al aprendiz? Esta acción no se puede deshacer..</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
