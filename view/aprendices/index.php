@@ -13,9 +13,9 @@
 
 <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover table-sm table-light">
-        <thead class=" table-dark">
+        <thead class="table-dark">
             <tr>
-                <th class="text-center">ID</th>
+                <th class="text-center">No.</th>
                 <th class="text-center">Nombre</th>
                 <th class="text-center">Apellido</th>
                 <th class="text-center">Tipo de Documento</th>
@@ -27,9 +27,10 @@
         </thead>
         <tbody class="table-group-divider">
             <?php if ($rows): ?>
+                <?php $contador = 1; ?>
                 <?php foreach ($rows as $row): ?>
                     <tr>
-                        <td class="text-center"><?= $row['id']; ?></td>
+                        <th class="text-center" scope="row"><?= $contador ?></th>
                         <td class="text-center"><?= $row['Nombre']; ?></td>
                         <td class="text-center"><?= $row['Apellido']; ?></td>
                         <td class="text-center"><?= $row['Tipo_documento']; ?></td>
@@ -37,22 +38,19 @@
                         <td class="text-center"><?= $row['telefono']; ?></td>
                         <td class="text-center"><?= $row['edad']; ?> años</td>
                         <td class="text-center">
-            
                             <a href="show.php?id=<?= $row['id'] ?>" class="btn btn-info btn-sm">
                                 <i class="fas fa-eye"></i>
                             </a>
-                            
                             <a href="editar.php?id=<?= $row['id'] ?>" class="btn btn-success btn-sm">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            
                             <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $row['id'] ?>">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>
 
-                
+                    <!-- Modal -->
                     <div class="modal fade" id="deleteModal<?= $row['id'] ?>" tabindex="-1" aria-labelledby="deleteModalLabel<?= $row['id'] ?>" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -70,10 +68,12 @@
                             </div>
                         </div>
                     </div>
+
+                    <?php $contador++; ?>
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="8" class="text-center">No hay aprendices registrados</td>
+                    <td colspan="9" class="text-center">No hay aprendices registrados</td>
                 </tr>
             <?php endif; ?>
         </tbody>
