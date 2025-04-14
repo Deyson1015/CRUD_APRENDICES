@@ -13,17 +13,14 @@
             try {
                 $id = $this->aprendizModel->crearAprendiz($data);
         
-                if ($id !== false && is_numeric($id)) {
+                if ($id !== false and is_numeric($id)) {
                     header("Location:show.php?id_aprendiz=" . $id);
                     exit();
                 } else {
-                    echo "<pre>";
-                    print_r($id); // Si es un string con mensaje de error, lo mostrará
-                    echo "</pre>";
                     exit(); // Detiene para que no redirija a crear.php
                 }
             } catch (Exception $e) {
-                echo "Error general: " . $e->getMessage();
+                return "Error general: " . $e->getMessage();
                 exit();
             }
         }

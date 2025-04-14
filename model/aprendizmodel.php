@@ -112,7 +112,6 @@ class Aprendizmodel
             ])) {
                 return "Fallo al insertar en 'aprendiz_programa'. Error: " . implode(", ", $stmt2->errorInfo());
             }
-    
             return $id_aprendiz;
     
         } catch (Exception $e) {
@@ -120,9 +119,6 @@ class Aprendizmodel
         }
     }
     
-    
-    
-
     public function update( $id, $data)
     {
         try {

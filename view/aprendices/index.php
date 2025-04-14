@@ -35,7 +35,7 @@
                         <td class="text-center"><?php echo $row['edad']; ?> años</td>
                         <td class="text-center">
                             <a href="show.php?id=<?= $row['id'] ?>" class="btn btn-info btn-sm">Ver</a>
-                            <a href="editar.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm">Modificar</a>
+                            <a href="editar.php?id=<?= $row['id'] ?>" class="btn btn-success btn-sm">Editar</a>
                             <a href="delete.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $row['id'] ?>">Eliminar</a>
                         </td>
                     </tr>

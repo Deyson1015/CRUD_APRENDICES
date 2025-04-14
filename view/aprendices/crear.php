@@ -3,9 +3,16 @@
 ?>
     
     <form action="store.php" method="POST" autocomplete="off">
+
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white text-center py-3 rounded-top">
+            <h2 class="mb-0">Formulario de Registro</h2>
+            <p class="mt-1 mb-0 fs-5">Agregar un nuevo Aprendiz</p>
+        </div>
+    </div>
     <!-- Información Personal -->
     <div class="card mb-4">
-        <div class="card-header bg-info">Información Personal</div>
+        <div class="card-header bg-success">Información Personal</div>
         <div class="card-body row g-3">
             <div class="col-md-3">
                 <label for="primer_nombre" class="form-label">Primer Nombre</label>
@@ -28,7 +35,7 @@
 
     <!-- Identificación y Contacto -->
     <div class="card mb-4">
-        <div class="card-header bg-info">Identificación y Contacto</div>
+        <div class="card-header bg-success">Identificación y Contacto</div>
         <div class="card-body row g-3">
             <div class="col-md-4">
                 <label for="id_tipo_documento" class="form-label">Tipo de Documento</label>
@@ -61,7 +68,7 @@
 
     <!-- Información Complementaria -->
     <div class="card mb-4">
-        <div class="card-header bg-info">Información Complementaria</div>
+        <div class="card-header bg-success">Información Complementaria</div>
         <div class="card-body row g-3">
             <div class="col-md-6">
                 <label for="id_genero" class="form-label">Género</label>
@@ -91,7 +98,7 @@
 
     <!-- Programa de Formación -->
     <div class="card mb-4">
-        <div class="card-header bg-info">Programa de Formación</div>
+        <div class="card-header bg-success">Programa de Formación</div>
         <div class="card-body row g-3">
             <div class="col-md-4">
                 <label for="programa" class="form-label">Programa</label>

@@ -18,7 +18,6 @@
         "fecha_inicio"       => $_POST['fecha_inicio'],
         "fecha_fin"          => $_POST['fecha_fin']
     ];
-    var_dump($data);
     $aprendiz->guardarAprendiz($data);
 
 ?>

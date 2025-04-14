@@ -16,7 +16,7 @@
                 <a href="/CRUD_APRENDICES/view/aprendices/index.php" class="btn btn-primary">
                     <i class="bi bi-arrow-left-circle"></i> Volver
                 </a>
-                <a href="/CRUD_APRENDICES/view/aprendices/editar.php?id=<?= $date['id'] ?>" class="btn btn-warning">
+                <a href="/CRUD_APRENDICES/view/aprendices/editar.php?id=<?= $date['id'] ?>" class="btn btn-success">
                     <i class="bi bi-pencil-square"></i> Editar
                 </a>
                 <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">

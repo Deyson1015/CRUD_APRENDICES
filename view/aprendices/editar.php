@@ -4,144 +4,137 @@
     $aprendiz = new AprendizController();
     $date= $aprendiz->show($_GET['id']);
 ?>
-    <form action="update.php" method="POST" autocomplete="off">
-        <h2 class="text-center">Editar Aprendiz</h2>
-        <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">ID</label>
-            <div class="col-sm-10">
-            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?= $date['id'] ?>">
+<form action="update.php" method="POST" autocomplete="off">
+    <!-- Información Personal -->
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white text-center py-3 rounded-top">
+            <h2 class="mb-0">Editar Aprendiz</h2>
+            <p class="mt-1 mb-0 fs-5">Actualiza los datos del aprendiz</p>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header bg-success">Información Personal</div>
+        <div class="card-body row g-3">
+            <div class="col-md-3">
+                <label for="primer_nombre" class="form-label">Primer Nombre</label>
+                <input type="text" name="primer_nombre" class="form-control" value="<?= $date['primer_nombre'] ?>" required>
+            </div>
+            <div class="col-md-3">
+                <label for="segundo_nombre" class="form-label">Segundo Nombre</label>
+                <input type="text" name="segundo_nombre" class="form-control" value="<?= $date['segundo_nombre'] ?>">
+            </div>
+            <div class="col-md-3">
+                <label for="primer_apellido" class="form-label">Primer Apellido</label>
+                <input type="text" name="primer_apellido" class="form-control" value="<?= $date['primer_apellido'] ?>" required>
+            </div>
+            <div class="col-md-3">
+                <label for="segundo_apellido" class="form-label">Segundo Apellido</label>
+                <input type="text" name="segundo_apellido" class="form-control" value="<?= $date['segundo_apellido'] ?>">
             </div>
         </div>
-        <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Primer Nombre</label>
-            <div class="col-sm-10">
-            <input type="text" name="primer_nombre" class="form-control" value="<?= $date['primer_nombre'] ?>" required>
+    </div>
+
+    <!-- Identificación y Contacto -->
+    <div class="card mb-4">
+        <div class="card-header bg-success">Identificación y Contacto</div>
+        <div class="card-body row g-3">
+            <div class="col-md-4">
+                <label for="id_tipo_documento" class="form-label">Tipo de Documento</label>
+                <select class="form-select" name="id_tipo_documento" required>
+                    <option value="" disabled>Seleccione una opción</option>
+                    <option value="1" <?= ($date['tipo_documento'] == 1) ? 'selected' : '' ?>>Tarjeta de identidad</option>
+                    <option value="2" <?= ($date['tipo_documento'] == 2) ? 'selected' : '' ?>>Cédula de ciudadanía</option>
+                    <option value="3" <?= ($date['tipo_documento'] == 3) ? 'selected' : '' ?>>Cédula de extranjería</option>
+                    <option value="4" <?= ($date['tipo_documento'] == 4) ? 'selected' : '' ?>>Tarjeta de extranjería</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="documento" class="form-label">Número de Documento</label>
+                <input type="text" name="documento" class="form-control" value="<?= $date['documento'] ?>" minlength="5" maxlength="10" required>
+            </div>
+            <div class="col-md-4">
+                <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
+                <input type="date" name="fecha_nacimiento" class="form-control" value="<?= $date['fecha_nacimiento'] ?>" required>
+            </div>
+            <div class="col-md-6">
+                <label for="correo" class="form-label">Correo Electrónico</label>
+                <input type="email" name="correo" class="form-control" value="<?= $date['correo'] ?>" autocomplete="on" required>
+            </div>
+            <div class="col-md-6">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="tel" name="telefono" class="form-control" value="<?= $date['telefono'] ?>" pattern="[0-9]{7,10}" required>
             </div>
         </div>
-        <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Segundo Nombre</label>
-            <div class="col-sm-10">
-            <input type="text" name="segundo_nombre" class="form-control" value="<?= $date['segundo_nombre'] ?>">
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Primer Apellido</label>
-            <div class="col-sm-10">
-            <input type="text" name="primer_apellido" class="form-control" value="<?= $date['primer_apellido'] ?>" required>
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Segundo Apellido</label>
-            <div class="col-sm-10">
-            <input type="text" name="segundo_apellido" class="form-control" value="<?= $date['segundo_apellido'] ?>">
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Tipo de Documento</label>
-            <div class="col-sm-10">
-            <select class="form-select" name="id_tipo_documento" required>
-                <option value="" selected disabled>Seleccione una opción</option>
-                <option value="1">Tarjeta de identidad</option>
-                <option value="2">Cédula de ciudadania</option>
-                <option value="3">Cédula de extranjería</option>
-                <option value="4">Tarjeta de extranjería</option>
-            </select>
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Número de Documento</label>
-            <div class="col-sm-10">
-            <input type="text" name="documento" class="form-control" minlength="5" maxlength="10" value="<?= $date['documento'] ?>" required>
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Fecha de Nacimiento</label>
-            <div class="col-sm-10">
-            <input type="date" name="fecha_nacimiento" class="form-control" value="<?= $date['fecha_nacimiento'] ?>" required>
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Correo Electrónico</label>
-            <div class="col-sm-10">
-            <input type="email" name="correo" class="form-control" value="<?= $date['correo'] ?>" autocomplete="on" required>
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Teléfono</label>
-            <div class="col-sm-10">
-            <input type="tel" name="telefono" class="form-control" pattern="[0-9]{7,10}" value="<?= $date['telefono'] ?>" required>
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label fw-bold">Género</label>
-            <div class="col-sm-10">
+    </div>
+
+    <!-- Información Complementaria -->
+    <div class="card mb-4">
+        <div class="card-header bg-success">Información Complementaria</div>
+        <div class="card-body row g-3">
+            <div class="col-md-6">
+                <label for="id_genero" class="form-label">Género</label>
                 <select class="form-select" name="id_genero" required>
-                    <option value="" disabled <?= ($dato['id_genero'] == '') ? 'selected' : '' ?>>Seleccione una opción</option>
-                    <option value="1" <?= ($dato['id_genero'] == 1) ? 'selected' : '' ?>>Masculino</option>
-                    <option value="2" <?= ($dato['id_genero'] == 2) ? 'selected' : '' ?>>Femenino</option>
-                    <option value="3" <?= ($dato['id_genero'] == 3) ? 'selected' : '' ?>>Otro</option>
+                    <option value="" selected disabled>Seleccione una opción</option>
+                    <option value="1" <?= ($date['genero'] == 1) ? 'selected' : '' ?>>Masculino</option>
+                    <option value="2" <?= ($date['genero'] == 2) ? 'selected' : '' ?>>Femenino</option>
+                    <option value="3" <?= ($date['genero'] == 3) ? 'selected' : '' ?>>Otro</option>
                 </select>
             </div>
-        </div>  
-
-        <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label fw-bold">Grupo Sanguíneo</label>
-            <div class="col-sm-10">
+            <div class="col-md-6">
+                <label for="id_grupo_sanguineo" class="form-label">Grupo Sanguíneo</label>
                 <select class="form-select" name="id_grupo_sanguineo" required>
-                    <option value="" disabled <?= ($dato['id_grupo_sanguineo'] == '') ? 'selected' : '' ?>>Seleccione una opción</option>
-                    <option value="1" <?= ($dato['id_grupo_sanguineo'] == 1) ? 'selected' : '' ?>>A+</option>
-                    <option value="2" <?= ($dato['id_grupo_sanguineo'] == 2) ? 'selected' : '' ?>>A-</option>
-                    <option value="3" <?= ($dato['id_grupo_sanguineo'] == 3) ? 'selected' : '' ?>>B+</option>
-                    <option value="4" <?= ($dato['id_grupo_sanguineo'] == 4) ? 'selected' : '' ?>>B-</option>
-                    <option value="5" <?= ($dato['id_grupo_sanguineo'] == 5) ? 'selected' : '' ?>>O+</option>
-                    <option value="6" <?= ($dato['id_grupo_sanguineo'] == 6) ? 'selected' : '' ?>>O-</option>
+                    <option value="" disabled>Seleccione una opción</option>
+                    <option value="1" <?= ($date['grupo_sanguineo'] == 1) ? 'selected' : '' ?>>A+</option>
+                    <option value="2" <?= ($date['grupo_sanguineo'] == 2) ? 'selected' : '' ?>>A-</option>
+                    <option value="3" <?= ($date['grupo_sanguineo'] == 3) ? 'selected' : '' ?>>B+</option>
+                    <option value="4" <?= ($date['grupo_sanguineo'] == 4) ? 'selected' : '' ?>>B-</option>
+                    <option value="5" <?= ($date['grupo_sanguineo'] == 5) ? 'selected' : '' ?>>AB+</option>
+                    <option value="6" <?= ($date['grupo_sanguineo'] == 6) ? 'selected' : '' ?>>AB-</option>
+                    <option value="7" <?= ($date['grupo_sanguineo'] == 7) ? 'selected' : '' ?>>O+</option>
+                    <option value="8" <?= ($date['grupo_sanguineo'] == 8) ? 'selected' : '' ?>>O-</option>
                 </select>
             </div>
-        </div>  
+        </div>
+    </div>
 
-        <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label fw-bold">Programa</label>
-            <div class="col-sm-10">
+    <!-- Programa de Formación -->
+    <div class="card mb-4">
+        <div class="card-header bg-success">Programa de Formación</div>
+        <div class="card-body row g-3">
+            <div class="col-md-4">
+                <label for="programa" class="form-label">Programa</label>
                 <select class="form-select" name="programa" required>
-                    <optgroup label="Técnicos">
-                        <option value="1" <?= ($dato['programa'] == 1) ? 'selected' : '' ?>>Técnico en Sistemas</option>
-                        <option value="2" <?= ($dato['programa'] == 2) ? 'selected' : '' ?>>Técnico en Asistencia Administrativa</option>
-                        <option value="3" <?= ($dato['programa'] == 3) ? 'selected' : '' ?>>Técnico en Cocina</option>
-                        <option value="4" <?= ($dato['programa'] == 4) ? 'selected' : '' ?>>Técnico en Contabilidad</option>
-                        <option value="5" <?= ($dato['programa'] == 5) ? 'selected' : '' ?>>Técnico en Manejo Ambiental</option>
-                        <option value="6" <?= ($dato['programa'] == 6) ? 'selected' : '' ?>>Técnico en Logística Empresarial</option>
-                    </optgroup>
-                    <optgroup label="Tecnólogos">
-                        <option value="7" <?= ($dato['programa'] == 7) ? 'selected' : '' ?>>Tecnólogo en ADSO</option>
-                        <option value="8" <?= ($dato['programa'] == 8) ? 'selected' : '' ?>>Tecnólogo en Gestión Administrativa</option>
-                        <option value="9" <?= ($dato['programa'] == 9) ? 'selected' : '' ?>>Tecnólogo en Talento Humano</option>
-                        <option value="10" <?= ($dato['programa'] == 10) ? 'selected' : '' ?>>Tecnólogo en Logística</option>
-                        <option value="11" <?= ($dato['programa'] == 11) ? 'selected' : '' ?>>Tecnólogo en Agropecuaria</option>
-                        <option value="12" <?= ($dato['programa'] == 12) ? 'selected' : '' ?>>Tecnólogo en Control Ambiental</option>
-                    </optgroup>
+                    <option value="1" <?= ($date['programa_formacion'] == 1) ? 'selected' : '' ?>>Técnico en Sistemas</option>
+                    <option value="2" <?= ($date['programa_formacion'] == 2) ? 'selected' : '' ?>>Técnico en Asistencia Administrativa</option>
+                    <option value="3" <?= ($date['programa_formacion'] == 3) ? 'selected' : '' ?>>Técnico en Cocina</option>
+                    <option value="4" <?= ($date['programa_formacion'] == 4) ? 'selected' : '' ?>>Técnico en Contabilidad</option>
+                    <option value="5" <?= ($date['programa_formacion'] == 5) ? 'selected' : '' ?>>Técnico en Manejo Ambiental</option>
+                    <option value="6" <?= ($date['programa_formacion'] == 6) ? 'selected' : '' ?>>Técnico en Logística Empresarial</option>
+                    <option value="7" <?= ($date['programa_formacion'] == 7) ? 'selected' : '' ?>>Tecnólogo en ADSO</option>
+                    <option value="8" <?= ($date['programa_formacion'] == 8) ? 'selected' : '' ?>>Tecnólogo en Gestión Administrativa</option>
+                    <option value="9" <?= ($date['programa_formacion'] == 9) ? 'selected' : '' ?>>Tecnólogo en Talento Humano</option>
+                    <option value="10" <?= ($date['programa_formacion'] == 10) ? 'selected' : '' ?>>Tecnólogo en Logística</option>
+                    <option value="11" <?= ($date['programa_formacion'] == 11) ? 'selected' : '' ?>>Tecnólogo en Agropecuaria</option>
+                    <option value="12" <?= ($date['programa_formacion'] == 12) ? 'selected' : '' ?>>Tecnólogo en Control Ambiental</option>
                 </select>
             </div>
-        </div>  
-
-        <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Fecha Inicio</label>
-            <div class="col-sm-10">
-            <input type="date" name="fecha_inicio" class="form-control" value="<?= $date['fecha_inicio'] ?>" required>
+            <div class="col-md-4">
+                <label for="fecha_inicio" class="form-label">Fecha de Inicio</label>
+                <input type="date" name="fecha_inicio" class="form-control" value="<?= $date['fecha_inicio'] ?>" required>
+            </div>
+            <div class="col-md-4">
+                <label for="fecha_fin" class="form-label">Fecha de Finalización</label>
+                <input type="date" name="fecha_fin" class="form-control" value="<?= $date['fecha_fin'] ?>" required>
             </div>
         </div>
-        <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Fecha Fin</label>
-            <div class="col-sm-10">
-            <input type="date" name="fecha_fin" class="form-control" value="<?= $date['fecha_fin'] ?>" required>
-            </div>  
-        </div>
-        <div class="mb-3 row">
-            <div class="col-sm-10">
-                <input type="submit" class="btn btn-success" value="Actualizar">
-                <a href="show.php?id=<?=$date['id']?> " class="btn btn-secondary">Cancelar</a>
-        </div>
+    </div>
 
-    </form>
+    <div class=" text-center mt-4">
+        <button type="submit" class="btn btn-success me-2">Actualizar</button>
+        <a class="btn btn-danger" href="index.php">Cancelar</a>
+    </div>
+</form>
 
 <?php
 require_once("C://xampp/htdocs/CRUD_APRENDICES/view/head/footer.php");
