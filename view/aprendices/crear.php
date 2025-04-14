@@ -1,5 +1,5 @@
 <?php
-    require_once("C:/xampp/htdocs/CRUD_APRENDICES/view/head/header.php");
+    require_once("C://xampp/htdocs/CRUD_APRENDICES/view/head/head.php");
 ?>
     
     <form action="store.php" method="POST" autocomplete="off">
@@ -31,9 +31,9 @@
         <div class="card-header bg-info">Identificación y Contacto</div>
         <div class="card-body row g-3">
             <div class="col-md-4">
-                <label for="tipo_documento" class="form-label">Tipo de Documento</label>
-                <select class="form-select" name="tipo_documento" required>
-                    <option selected disabled>Seleccione una opción</option>
+                <label for="id_tipo_documento" class="form-label">Tipo de Documento</label>
+                <select class="form-select" name="id_tipo_documento" required>
+                    <option value="" disabled selected>Seleccione una opción</option>
                     <option value="1">Tarjeta de identidad</option>
                     <option value="2">Cédula de ciudadania</option>
                     <option value="3">Cédula de extranjería</option>
@@ -64,18 +64,18 @@
         <div class="card-header bg-info">Información Complementaria</div>
         <div class="card-body row g-3">
             <div class="col-md-6">
-                <label for="sexo" class="form-label">Generos</label>
-                <select class="form-select" name="sexo" required>
-                    <option selected disabled>Seleccione una opción</option>
+                <label for="id_genero" class="form-label">Género</label>
+                <select class="form-select" name="id_genero" required>
+                    <option value="" selected disabled>Seleccione una opción</option>
                     <option value="1">Masculino</option>
                     <option value="2">Femenino</option>
                     <option value="3">Otro</option>
                 </select>
             </div>
             <div class="col-md-6">
-                <label for="grupo_sanguineo" class="form-label">Grupo Sanguíneo</label>
-                <select class="form-select" name="grupo_sanguineo" required>
-                    <option selected disabled>Seleccione una opción</option>
+                <label for="id_grupo_sanguineo" class="form-label">Grupo Sanguíneo</label>
+                <select class="form-select" name="id_grupo_sanguineo" required>
+                    <option value="" disabled>Seleccione una opción</option>
                     <option value="1">A+</option>
                     <option value="2">A-</option>
                     <option value="3">B+</option>
@@ -94,8 +94,8 @@
         <div class="card-header bg-info">Programa de Formación</div>
         <div class="card-body row g-3">
             <div class="col-md-4">
-                <label for="programa_formacion" class="form-label">Programa</label>
-                <select class="form-select" name="programa_formacion" required>
+                <label for="programa" class="form-label">Programa</label>
+                <select class="form-select" name="programa" required>
                     <optgroup label="Técnicos">
                         <option value="1">Técnico en Sistemas</option>
                         <option value="2">Técnico en Asistencia Administrativa</option>
@@ -132,5 +132,5 @@
 </form>
 
 <?php
-    require_once("C:/xampp/htdocs/CRUD_APRENDICES/view/footer/footer.php");
+    require_once("C://xampp/htdocs/CRUD_APRENDICES/view/head/footer.php");
 ?>

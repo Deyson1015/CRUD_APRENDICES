@@ -4,127 +4,102 @@
     $aprendiz = new AprendizController();
     $date= $aprendiz->show($_GET['id']);
 ?>
-<h2 class="text-center">Detalles del Aprendiz</h2>
-<div>
-    <a href="/CRUD_APRENDICES/view/aprendices/index.php" class="btn btn-primary">Volver</a>
-    <a href="/CRUD_APRENDICES/view/aprendices/editar.php?id=<?= $date['id'] ?>" class="btn btn-warning">Editar</a>
-    <a  class = "btn btn-danger">Eliminar</a>
-    <div class="modal" tabindex="-1">
+<div class="container py-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-success text-white text-center">
+            <h2 class="mb-0">Detalles del Aprendiz</h2>
+        </div>
+        <div class="card-body">
+
+            <!-- Botones de acción -->
+            <div class="mb-4 d-flex justify-content-center gap-3">
+                <a href="/CRUD_APRENDICES/view/aprendices/index.php" class="btn btn-primary">
+                    <i class="bi bi-arrow-left-circle"></i> Volver
+                </a>
+                <a href="/CRUD_APRENDICES/view/aprendices/editar.php?id=<?= $date['id'] ?>" class="btn btn-warning">
+                    <i class="bi bi-pencil-square"></i> Editar
+                </a>
+                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                    <i class="bi bi-trash3-fill"></i> Eliminar
+                </button>
+            </div>
+
+            <!-- Tabla de detalles -->
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th colspan="2">Información Personal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><th>ID del Aprendiz</th><td><?= $date['id'] ?></td></tr>
+                        <tr><th>Primer Nombre</th><td><?= $date['primer_nombre'] ?></td></tr>
+                        <tr><th>Segundo Nombre</th><td><?= $date['segundo_nombre'] ?></td></tr>
+                        <tr><th>Primer Apellido</th><td><?= $date['primer_apellido'] ?></td></tr>
+                        <tr><th>Segundo Apellido</th><td><?= $date['segundo_apellido'] ?></td></tr>
+                    </tbody>
+
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th colspan="2">Identificación y Contacto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><th>Tipo de Documento</th><td><?= $date['tipo_documento'] ?></td></tr>
+                        <tr><th>Número de Documento</th><td><?= $date['documento'] ?></td></tr>
+                        <tr><th>Teléfono</th><td><?= $date['telefono'] ?></td></tr>
+                        <tr><th>Correo Electrónico</th><td><?= $date['correo'] ?></td></tr>
+                    </tbody>
+
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th colspan="2">Información Complementaria</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><th>Fecha de Nacimiento</th><td><?= $date['fecha_nacimiento'] ?></td></tr>
+                        <tr><th>Género</th><td><?= $date['genero'] ?></td></tr>
+                        <tr><th>Grupo Sanguíneo</th><td><?= $date['grupo_sanguineo'] ?></td></tr>
+                    </tbody>
+
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th colspan="2">Programa de Formación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><th>Nombre del Programa</th><td><?= $date['programa_formacion'] ?></td></tr>
+                        <tr><th>Nivel de Formación</th><td><?= $date['nivel'] ?></td></tr>
+                        <tr><th>Fecha de Inicio</th><td><?= $date['fecha_inicio'] ?></td></tr>
+                        <tr><th>Fecha de Finalización</th><td><?= $date['fecha_fin'] ?></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de confirmación de eliminación -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">¿Desea eliminar el Aprendiz?</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <p>Una vez eliminado no se podra recuperar el aprendiz</p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <a href="eliminar.php?id=<?= $date['id']?>"class="btn btn-danger">Eliminar</button>
-        
-        </div>
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteModalLabel">Confirmar Eliminación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro que desea eliminar al aprendiz? Esta acción no se puede deshacer.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <a href="delete.php?id=<?= $date['id'] ?>" class="btn btn-danger">Eliminar</a>
+            </div>
         </div>
     </div>
-    </div>
-   
-
 </div>
-<table class ="container fluid-table table table-striped table-bordered table-hover table-sm">
-    <thead class="table-dark">
-        <tr>
-            <th colspan="15" class="text-center">Información del Aprendiz</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th>ID</th>
-            <td scope ="col"><?= $date['id'] ?></td>
-        </tr>
-        <tr>
-            <th>Primer Nombre</th>
-            <td scope ="col"><?= $date['primer_nombre'] ?></td>
-        </tr>
-        <tr>
-            <th>Segundo Nombre</th>
-            <td scope ="col"><?= $date['segundo_nombre'] ?></td>
-        </tr>
-        <tr>
-            <th>Primer Apellido</th>
-            <td scope ="col"><?= $date['primer_apellido'] ?></td>
-        </tr>
-        <tr>
-            <th>Segundo Apellido</th>
-            <td scope ="col"><?= $date['segundo_apellido'] ?></td>
-        </tr>
-    </tbody>
-    <thead class="table-dark">
-        <tr>
-            <th colspan="15" class="text-center">Identificación y Contacto</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th>Tipo Documento</th>
-            <td scope ="col"><?= $date['Tipo_documento'] ?></td>
-        </tr>
-        <tr>
-            <th>Documento</th>
-            <td scope ="col"><?= $date['documento'] ?></td>
-        </tr>
-        <tr>
-            <th>Telefono</th>
-            <td scope ="col"><?= $date['telefono'] ?></td>
-        </tr>
-        <tr>
-            <th>Correo</th>
-            <td scope ="col"><?= $date['correo'] ?></td>
-        </tr>
-    </tbody>
-    <thead class="table-dark">
-        <tr>
-            <th colspan="15" class="text-center">Información Complementaria</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th>Fecha Nacimiento</th>
-            <td scope ="col"><?= $date['fecha_nacimiento'] ?></td>
-        </tr>
-        <tr>
-            <th>Genero</th>
-            <td scope ="col"><?= $date['genero'] ?></td>
-        </tr>
-        <tr>
-            <th>Grupo Sanguineo</th>
-            <td scope ="col"><?= $date['grupo_sanguineo'] ?></td>
-        </tr>
-    </tbody>
-    <thead class="table-dark">
-        <tr>
-            <th colspan="15" class="text-center">Programa de Formación</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th>Programa Formacion</th>
-            <td scope ="col"><?= $date['programa_formacion'] ?></td>
-        </tr>
-        <tr>
-            <th>Nivel</th>
-            <td scope ="col"><?= $date['nivel'] ?></td>
-        </tr>
-        <tr>
-            <th>Fecha Inicio</th>
-            <td scope ="col"><?= $date['fecha_inicio'] ?></td>
-        </tr>
-        <tr>
-            <th>Fecha Fin</th>
-            <td scope ="col"><?= $date['fecha_fin'] ?></td>
-        </tr>
-    </tbody>
-</table>
+
 
 <?php
-require_once("C://xampp/htdocs/CRUD_APRENDICES/view/footer/footer.php");
+require_once("C://xampp/htdocs/CRUD_APRENDICES/view/head/footer.php");
 ?>

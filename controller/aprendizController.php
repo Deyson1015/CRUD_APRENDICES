@@ -5,30 +5,28 @@
 
         public function __construct()
         {
-            require_once("C://laragon/www/CRUD_APRENDICES/model/aprendizmodel.php");
+            require_once("C://xampp/htdocs/CRUD_APRENDICES/model/aprendizmodel.php");
             $this->aprendizModel = new AprendizModel();
         }
 
         public function guardarAprendiz($data) {
-            try{
+            try {
                 $id = $this->aprendizModel->crearAprendiz($data);
-                return($id!=false) ? header("Location:show.php?id_aprendiz=". $id) : header("Location:crear.php"); 
-
-                if ($id) {  
-                    $this->aprendizModel->asignarPrograma(
-                    $id_aprendiz, 
-                    $data['programa'],
-                    $data['fecha_inicio'],
-                    $data['fecha_fin']
-                );
-                    
+        
+                if ($id !== false && is_numeric($id)) {
+                    header("Location:show.php?id_aprendiz=" . $id);
+                    exit();
+                } else {
+                    echo "<pre>";
+                    print_r($id); // Si es un string con mensaje de error, lo mostrará
+                    echo "</pre>";
+                    exit(); // Detiene para que no redirija a crear.php
                 }
-            header("Location: index.php"); // Redirigir a la página principal después de crear el aprendiz
             } catch (Exception $e) {
-                return "Error: " . $e->getMessage();        
+                echo "Error general: " . $e->getMessage();
+                exit();
             }
         }
-
 
         public function show($id) {
             try {
@@ -40,15 +38,27 @@
 
         public function index() {
             try {
-                return ($this->aprendizModel->index()) ? $this->aprendizModel->index() : false;
+                $rows = $this->aprendizModel->index();
+                return $rows ? $rows : false;
             } catch (Exception $e) {
                 return "Error: " . $e->getMessage();
             }
+        }
 
-            
-    
+        public function update($id, $data) {
+            try {
+                return ($this->aprendizModel->update($id, $data)) ? header("Location: show.php?id=". $id) : header("Location: index.php");
+            } catch (Exception $e) {
+                return "Error: " . $e->getMessage();        
+            }
+        }
+
+        public function delete($id) {
+            try {
+                return ($this->aprendizModel->delete($id)) ? header("Location: index.php") : header("Location: show.php?id=". $id);
+            } catch (Exception $e) {
+                return "Error: " . $e->getMessage();        
+            }
         }
     }
-      
-
 ?>
