@@ -10,7 +10,7 @@
             <p class="mt-1 mb-0 fs-5">Agregar un nuevo Aprendiz</p>
         </div>
     </div>
-    <!-- Información Personal -->
+    
     <div class="card mb-4">
         <div class="card-header bg-success">Información Personal</div>
         <div class="card-body row g-3">
@@ -33,7 +33,6 @@
         </div>
     </div>
 
-    <!-- Identificación y Contacto -->
     <div class="card mb-4">
         <div class="card-header bg-success">Identificación y Contacto</div>
         <div class="card-body row g-3">
@@ -66,7 +65,6 @@
         </div>
     </div>
 
-    <!-- Información Complementaria -->
     <div class="card mb-4">
         <div class="card-header bg-success">Información Complementaria</div>
         <div class="card-body row g-3">
@@ -96,7 +94,6 @@
         </div>
     </div>
 
-    <!-- Programa de Formación -->
     <div class="card mb-4">
         <div class="card-header bg-success">Programa de Formación</div>
         <div class="card-body row g-3">

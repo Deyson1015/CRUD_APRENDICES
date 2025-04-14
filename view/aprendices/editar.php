@@ -5,7 +5,7 @@
     $date= $aprendiz->show($_GET['id']);
 ?>
 <form action="update.php" method="POST" autocomplete="off">
-    <!-- Información Personal -->
+    
     <div class="card mb-4">
         <div class="card-header bg-success text-white text-center py-3 rounded-top">
             <h2 class="mb-0">Editar Aprendiz</h2>
@@ -68,7 +68,6 @@
         </div>
     </div>
 
-    <!-- Información Complementaria -->
     <div class="card mb-4">
         <div class="card-header bg-success">Información Complementaria</div>
         <div class="card-body row g-3">
@@ -98,7 +97,6 @@
         </div>
     </div>
 
-    <!-- Programa de Formación -->
     <div class="card mb-4">
         <div class="card-header bg-success">Programa de Formación</div>
         <div class="card-body row g-3">

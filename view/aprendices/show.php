@@ -14,13 +14,13 @@
             <!-- Botones de acción -->
             <div class="mb-4 d-flex justify-content-center gap-3">
                 <a href="/CRUD_APRENDICES/view/aprendices/index.php" class="btn btn-primary">
-                    <i class="bi bi-arrow-left-circle"></i> Volver
+                    <i class="fas fa-arrow-left"></i>
                 </a>
                 <a href="/CRUD_APRENDICES/view/aprendices/editar.php?id=<?= $date['id'] ?>" class="btn btn-success">
-                    <i class="bi bi-pencil-square"></i> Editar
+                    <i class="fas fa-edit"></i> 
                 </a>
                 <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                    <i class="bi bi-trash3-fill"></i> Eliminar
+                    <i class="fas fa-trash-alt"></i> 
                 </button>
             </div>
 
@@ -70,6 +70,7 @@
                     </thead>
                     <tbody>
                         <tr><th>Nombre del Programa</th><td><?= $date['programa_formacion'] ?></td></tr>
+                        <tr><th>Numero de ficha</th><td><?= $date['numero_de_ficha'] ?></td></tr>
                         <tr><th>Nivel de Formación</th><td><?= $date['nivel'] ?></td></tr>
                         <tr><th>Fecha de Inicio</th><td><?= $date['fecha_inicio'] ?></td></tr>
                         <tr><th>Fecha de Finalización</th><td><?= $date['fecha_fin'] ?></td></tr>

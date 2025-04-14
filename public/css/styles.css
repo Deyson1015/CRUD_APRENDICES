@@ -1,0 +1,35 @@
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f1f1f1;
+}
+
+.navbar {
+    background-color:rgb(16, 192, 68);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand,
+.nav-link,
+.dropdown-item {
+    color: #ffffff !important;
+}
+
+.dropdown-menu {
+    background-color: rgb(16, 192, 68);
+    border: none;
+}
+
+.dropdown-item:hover {
+    background-color: #ebeef1;
+}
+
+.card-header {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.btn {
+    font-weight: 500;
+}
+

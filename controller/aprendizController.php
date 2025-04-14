@@ -17,7 +17,7 @@
                     header("Location:show.php?id_aprendiz=" . $id);
                     exit();
                 } else {
-                    exit(); // Detiene para que no redirija a crear.php
+                    exit(); 
                 }
             } catch (Exception $e) {
                 return "Error general: " . $e->getMessage();
@@ -52,10 +52,18 @@
 
         public function delete($id) {
             try {
-                return ($this->aprendizModel->delete($id)) ? header("Location: index.php") : header("Location: show.php?id=". $id);
+                if ($this->aprendizModel->delete($id)) {
+                    header("Location: /CRUD_APRENDICES/view/aprendices/show.php");
+                    exit;
+                } else {
+                    header("Location: /CRUD_APRENDICES/view/aprendices/show.php?error=1");
+                    exit;
+                }
             } catch (Exception $e) {
-                return "Error: " . $e->getMessage();        
+                return "Error: " . $e->getMessage();  
+                exit;
             }
         }
+        
     }
 ?>

@@ -53,7 +53,8 @@ class Aprendizmodel
                     a.correo,
                     a.fecha_nacimiento,
                     g.genero,
-                    gp.grupo AS grupo_sanguineo,
+                    gp.grupo AS grupo_sanguineo, 
+                    ap.id AS numero_de_ficha,
                     pf.nombre AS programa_formacion,
                     pf.nivel,
                     ap.fecha_inicio,
@@ -158,14 +159,21 @@ class Aprendizmodel
     public function delete($id)
     {
         try {
-            $sql = "DELETE FROM aprendices WHERE id = :id";
-            $stmt = $this->conn->prepare($sql); 
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-            return $stmt->execute([':id' => $id]) ? true : false;
+            $sql1 = "DELETE FROM aprendiz_programa WHERE id_aprendiz = :id";
+            $stmt1 = $this->conn->prepare($sql1);
+            $stmt1->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt1->execute();
+    
+            $sql2 = "DELETE FROM aprendices WHERE id = :id";
+            $stmt2 = $this->conn->prepare($sql2);
+            $stmt2->bindParam(':id', $id, PDO::PARAM_INT);
+    
+            return $stmt2->execute();
         } catch (Exception $e) {
-            return "Error al eliminar el aprendiz: " . $e->getMessage();
+            return "Error al eliminar el aprendiz y sus relaciones: " . $e->getMessage();
         }
     }
+    
 }
 
 
