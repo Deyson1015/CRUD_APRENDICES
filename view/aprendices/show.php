@@ -6,7 +6,7 @@
 ?>
 <div class="container py-4">
     <div class="card shadow-lg">
-        <div class="card-header bg-success text-white text-center">
+        <div class="encabezados-lista">
             <h2 class="mb-0">Detalles del Aprendiz</h2>
         </div>
         <div class="card-body">
@@ -25,9 +25,9 @@
 
             <div class="table-responsive">
                 <table class="table table-bordered table-hover table-striped">
-                    <thead class="table-dark text-center">
+                    <thead class="table-primary text-center">
                         <tr>
-                            <th colspan="2">Información Personal</th>
+                            <th  colspan="2">Información Personal</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,7 +38,7 @@
                         <tr><th>Segundo Apellido</th><td><?= $date['segundo_apellido'] ?></td></tr>
                     </tbody>
 
-                    <thead class="table-dark text-center">
+                    <thead class="table-primary text-center">
                         <tr>
                             <th colspan="2">Identificación y Contacto</th>
                         </tr>
@@ -50,7 +50,7 @@
                         <tr><th>Correo Electrónico</th><td><?= $date['correo'] ?></td></tr>
                     </tbody>
 
-                    <thead class="table-dark text-center">
+                    <thead class="table-primary text-center">
                         <tr>
                             <th colspan="2">Información Complementaria</th>
                         </tr>
@@ -61,7 +61,7 @@
                         <tr><th>Grupo Sanguíneo</th><td><?= $date['grupo_sanguineo'] ?></td></tr>
                     </tbody>
 
-                    <thead class="table-dark text-center">
+                    <thead class="table-primary text-center">
                         <tr>
                             <th colspan="2">Programa de Formación</th>
                         </tr>

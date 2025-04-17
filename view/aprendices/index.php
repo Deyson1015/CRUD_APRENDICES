@@ -16,38 +16,38 @@
 
 <div class="table-responsive">
     <div class="card mb-4">
-        <div class="card-header bg-success text-white text-center py-3 rounded-top">
-            <h2 class="mb-0 ">Lista de Aprendices</h2>
+        <div class="encabezados-lista">
+            <h3 class="mb-0 ">Lista de Aprendices</h3>
         </div>
     </div>
 </div>
 
 <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover table-sm table-light">
-        <thead class="table-dark">
+        <thead class="table-primary text-center">
             <tr>
-                <th class="text-center">No.</th>
-                <th class="text-center">Nombre</th>
-                <th class="text-center">Apellido</th>
-                <th class="text-center">Tipo de Documento</th>
-                <th class="text-center">Documento</th>
-                <th class="text-center">Teléfono</th>
-                <th class="text-center">Edad</th>
-                <th class="text-center">Acciones</th>
+                <th>No.</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Tipo de Documento</th>
+                <th>Documento</th>
+                <th>Teléfono</th>
+                <th>Edad</th>
+                <th>Acciones</th>
             </tr>
         </thead>
-        <tbody class="table-group-divider">
+        <tbody>
             <?php if ($rows): ?>
                 <?php $contador = 1; ?>
                 <?php foreach ($rows as $row): ?>
-                    <tr>
-                        <th class="text-center" scope="row"><?= $contador ?></th>
-                        <td class="text-center"><?= $row['Nombre']; ?></td>
-                        <td class="text-center"><?= $row['Apellido']; ?></td>
-                        <td class="text-center"><?= $row['Tipo_documento']; ?></td>
-                        <td class="text-center"><?= $row['documento']; ?></td>
-                        <td class="text-center"><?= $row['telefono']; ?></td>
-                        <td class="text-center"><?= $row['edad']; ?> años</td>
+                    <tr class="text-center">
+                        <th scope="row"><?= $contador ?></th>
+                        <td><?= $row['Nombre']; ?></td>
+                        <td><?= $row['Apellido']; ?></td>
+                        <td><?= $row['Tipo_documento']; ?></td>
+                        <td><?= $row['documento']; ?></td>
+                        <td><?= $row['telefono']; ?></td>
+                        <td><?= $row['edad']; ?> años</td>
                         <td class="text-center">
                             <a href="show.php?id=<?= $row['id'] ?>" class="btn btn-info btn-sm">
                                 <i class="fas fa-eye"></i>

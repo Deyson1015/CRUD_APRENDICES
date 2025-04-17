@@ -7,14 +7,13 @@
 <form action="update.php?id=<?= $date['id'] ?>" method="POST" autocomplete="off">
 
     <div class="card mb-4">
-        <div class="card-header bg-success text-white text-center py-3 rounded-top">
-            <h2 class="mb-0">Editar Aprendiz</h2>
-            <p class="mt-1 mb-0 fs-5">Actualiza los datos del aprendiz</p>
+        <div class="card-header encabezados-lista">
+            <h3 class="mb-0">Modificar Información</h3>
         </div>
     </div>
 
     <div class="card mb-4">
-        <div class="card-header bg-success">Información Personal</div>
+        <div class="card-header editar-crear">Información Personal</div>
         <div class="card-body row g-3">
             <div class="col-md-3">
                 <label for="primer_nombre" class="form-label">Primer Nombre</label>
@@ -36,7 +35,7 @@
     </div>
 
     <div class="card mb-4">
-        <div class="card-header bg-success">Identificación y Contacto</div>
+        <div class="card-header editar-crear">Identificación y Contacto</div>
         <div class="card-body row g-3">
             <div class="col-md-4">
                 <label for="id_tipo_documento" class="form-label">Tipo de Documento</label>
@@ -68,7 +67,7 @@
     </div>
 
     <div class="card mb-4">
-        <div class="card-header bg-success">Información Complementaria</div>
+        <div class="card-header editar-crear">Información Complementaria</div>
         <div class="card-body row g-3">
             <div class="col-md-6">
                 <label for="id_genero" class="form-label">Género</label>
@@ -97,12 +96,12 @@
     </div>
 
     <div class="card mb-4">
-        <div class="card-header bg-success">Programa de Formación</div>
+        <div class="card-header editar-crear">Programa de Formación</div>
         <div class="card-body row g-3">
             <div class="col-md-4">
-                <label for="programa" class="form-label">Programa</label>
-                <select class="form-select" name="programa" required>
-                <optgroup label="Técnicos">
+                <label for="id_programa_formacion" class="form-label">Programa</label>
+                <select class="form-select" name="id_programa_formacion" required>
+                    <optgroup label="Técnicos">
                         <option value="1" <?= ($date['programa_formacion'] == 1) ? 'selected' : '' ?>>Técnico en Sistemas</option>
                         <option value="2" <?= ($date['programa_formacion'] == 2) ? 'selected' : '' ?>>Técnico en Asistencia Administrativa</option>
                         <option value="3" <?= ($date['programa_formacion'] == 3) ? 'selected' : '' ?>>Técnico en Cocina</option>

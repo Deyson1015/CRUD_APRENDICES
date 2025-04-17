@@ -5,14 +5,13 @@
     <form action="store.php" method="POST" autocomplete="off">
 
     <div class="card mb-4">
-        <div class="card-header bg-success text-white text-center py-3 rounded-top">
-            <h2 class="mb-0">Formulario de Registro</h2>
-            <p class="mt-1 mb-0 fs-5">Agregar un nuevo Aprendiz</p>
+        <div class="encabezados-lista">
+            <h3 class="mb-0">Formulario de Registro</h3>
         </div>
     </div>
     
     <div class="card mb-4">
-        <div class="card-header bg-success">Información Personal</div>
+        <div class="card-header editar-crear">Información Personal</div>
         <div class="card-body row g-3">
             <div class="col-md-3">
                 <label for="primer_nombre" class="form-label">Primer Nombre</label>
@@ -34,7 +33,7 @@
     </div>
 
     <div class="card mb-4">
-        <div class="card-header bg-success">Identificación y Contacto</div>
+        <div class="card-header editar-crear">Identificación y Contacto</div>
         <div class="card-body row g-3">
             <div class="col-md-4">
                 <label for="id_tipo_documento" class="form-label">Tipo de Documento</label>
@@ -66,7 +65,7 @@
     </div>
 
     <div class="card mb-4">
-        <div class="card-header bg-success">Información Complementaria</div>
+        <div class="card-header editar-crear">Información Complementaria</div>
         <div class="card-body row g-3">
             <div class="col-md-6">
                 <label for="id_genero" class="form-label">Género</label>
@@ -95,11 +94,11 @@
     </div>
 
     <div class="card mb-4">
-        <div class="card-header bg-success">Programa de Formación</div>
+        <div class="card-header editar-crear">Programa de Formación</div>
         <div class="card-body row g-3">
             <div class="col-md-4">
-                <label for="programa" class="form-label">Programa</label>
-                <select class="form-select" name="programa" required>
+                <label for="id_programa_formacion" class="form-label">Programa</label>
+                <select class="form-select" name="id_programa_formacion" required>
                     <optgroup label="Técnicos">
                         <option value="1">Técnico en Sistemas</option>
                         <option value="2">Técnico en Asistencia Administrativa</option>

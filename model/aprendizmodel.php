@@ -132,7 +132,7 @@ class Aprendizmodel
     
             if (!$stmt2->execute([
                 $id_aprendiz,
-                $data['programa'],
+                $data['id_programa_formacion'],
                 $data['fecha_inicio'],
                 $data['fecha_fin']
             ])) {
@@ -145,25 +145,24 @@ class Aprendizmodel
         }
     }
     
-    public function update( $id, $data)
+    public function update($id_aprendiz, $data)
     {
         try {
-            $sql = "UPDATE aprendices SET
-                primer_nombre = :primer_nombre, 
-                segundo_nombre = :segundo_nombre, 
-                primer_apellido = :primer_apellido, 
-                segundo_apellido = :segundo_apellido, 
-                id_tipo_documento = :id_tipo_documento, 
-                documento = :documento,
-                telefono = :telefono,
-                correo = :correo,
-                fecha_nacimiento = :fecha_nacimiento, 
-                id_genero = :id_genero, 
-                id_grupo_sanguineo = :id_grupo_sanguineo 
-                WHERE id = :id";
+            $sql = "UPDATE aprendices SET 
+                        primer_nombre = :primer_nombre,
+                        segundo_nombre = :segundo_nombre,
+                        primer_apellido = :primer_apellido,
+                        segundo_apellido = :segundo_apellido,
+                        id_tipo_documento = :id_tipo_documento,
+                        documento = :documento,
+                        telefono = :telefono,
+                        correo = :correo,
+                        fecha_nacimiento = :fecha_nacimiento,
+                        id_genero = :id_genero,
+                        id_grupo_sanguineo = :id_grupo_sanguineo
+                    WHERE id = :id_aprendiz";
     
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(":id", $id);
             $stmt->bindParam(":primer_nombre", $data['primer_nombre']);
             $stmt->bindParam(":segundo_nombre", $data['segundo_nombre']);
             $stmt->bindParam(":primer_apellido", $data['primer_apellido']);
@@ -175,12 +174,35 @@ class Aprendizmodel
             $stmt->bindParam(":fecha_nacimiento", $data['fecha_nacimiento']);
             $stmt->bindParam(":id_genero", $data['id_genero']);
             $stmt->bindParam(":id_grupo_sanguineo", $data['id_grupo_sanguineo']);
-            return ($stmt->execute()) ? true : false;
+            $stmt->bindParam(":id_aprendiz", $id_aprendiz, PDO::PARAM_INT);
+    
+            if (!$stmt->execute()) {
+                return "Error al actualizar 'aprendices': " . implode(", ", $stmt->errorInfo());
+            }
+    
+            $sql2 = "UPDATE aprendiz_programa SET 
+                        id_programa_formacion = :id_programa,
+                        fecha_inicio = :fecha_inicio,
+                        fecha_fin = :fecha_fin
+                     WHERE id_aprendiz = :id_aprendiz";
+    
+            $stmt2 = $this->conn->prepare($sql2);
+            $stmt2->bindParam(":id_programa", $data['id_programa_formacion']);
+            $stmt2->bindParam(":fecha_inicio", $data['fecha_inicio']);
+            $stmt2->bindParam(":fecha_fin", $data['fecha_fin']);
+            $stmt2->bindParam(":id_aprendiz", $id_aprendiz, PDO::PARAM_INT);
+    
+            if (!$stmt2->execute()) {
+                return "Error al actualizar 'aprendiz_programa': " . implode(", ", $stmt2->errorInfo());
+            }
+    
+            return true;
+    
         } catch (Exception $e) {
-           return "Error al actualizar el aprendiz: " . $e->getMessage();
+            return "Error en la actualización: " . $e->getMessage();
         }
     }
-
+    
     public function delete($id)
     {
         try {

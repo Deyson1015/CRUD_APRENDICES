@@ -14,7 +14,7 @@
         "fecha_nacimiento"   => $_POST['fecha_nacimiento'],
         "id_genero"          => $_POST['id_genero'],
         "id_grupo_sanguineo" => $_POST['id_grupo_sanguineo'],
-        "programa"           => $_POST['programa'],
+        "id_programa_formacion" => $_POST['id_programa_formacion'],
         "fecha_inicio"       => $_POST['fecha_inicio'],
         "fecha_fin"          => $_POST['fecha_fin']
     ];
