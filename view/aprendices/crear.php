@@ -79,7 +79,7 @@
             <div class="col-md-6">
                 <label for="id_grupo_sanguineo" class="form-label">Grupo Sanguíneo</label>
                 <select class="form-select" name="id_grupo_sanguineo" required>
-                    <option value="" disabled>Seleccione una opción</option>
+                    <option value="" selected disabled>Seleccione una opción</option>
                     <option value="1">A+</option>
                     <option value="2">A-</option>
                     <option value="3">B+</option>
@@ -99,6 +99,7 @@
             <div class="col-md-4">
                 <label for="id_programa_formacion" class="form-label">Programa</label>
                 <select class="form-select" name="id_programa_formacion" required>
+                <option value="" selected disabled>Seleccione una opción</option>
                     <optgroup label="Técnicos">
                         <option value="1">Técnico en Sistemas</option>
                         <option value="2">Técnico en Asistencia Administrativa</option>

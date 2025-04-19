@@ -81,7 +81,7 @@
             <div class="col-md-6">
                 <label for="id_grupo_sanguineo" class="form-label">Grupo Sanguíneo</label>
                 <select class="form-select" name="id_grupo_sanguineo" required>
-                    <option value="" disabled>Seleccione una opción</option>
+                    <option value=""  disabled>Seleccione una opción</option>
                     <option value="1" <?= ($date['grupo_sanguineo'] == 1) ? 'selected' : '' ?>>A+</option>
                     <option value="2" <?= ($date['grupo_sanguineo'] == 2) ? 'selected' : '' ?>>A-</option>
                     <option value="3" <?= ($date['grupo_sanguineo'] == 3) ? 'selected' : '' ?>>B+</option>
@@ -101,6 +101,7 @@
             <div class="col-md-4">
                 <label for="id_programa_formacion" class="form-label">Programa</label>
                 <select class="form-select" name="id_programa_formacion" required>
+                <option value=""  disabled>Seleccione una opción</option>
                     <optgroup label="Técnicos">
                         <option value="1" <?= ($date['programa_formacion'] == 1) ? 'selected' : '' ?>>Técnico en Sistemas</option>
                         <option value="2" <?= ($date['programa_formacion'] == 2) ? 'selected' : '' ?>>Técnico en Asistencia Administrativa</option>
