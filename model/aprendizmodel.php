@@ -74,10 +74,21 @@ class Aprendizmodel
         }
           
     }
-    
+
     public function crearAprendiz($data) {
         try {
-
+            if (empty($data['primer_nombre']) || empty($data['documento']) || empty($data['telefono']) || empty($data['correo'])) {
+                return "Todos los campos obligatorios deben ser completados.";
+            }
+          
+            if (strlen($data['telefono']) != 10 || !is_numeric($data['telefono'])) {
+                return "El número de teléfono debe tener exactamente 10 dígitos y solo números.";
+            }
+    
+            if (!filter_var($data['correo'], FILTER_VALIDATE_EMAIL)) {
+                return "El correo electrónico no es válido.";
+            }
+    
             $stmt = $this->conn->prepare("SELECT COUNT(*) FROM aprendices WHERE documento = ?");
             $stmt->execute([$data['documento']]);
             $countDocumento = $stmt->fetchColumn();
@@ -85,7 +96,7 @@ class Aprendizmodel
             if ($countDocumento > 0) {
                 return "El número de documento ya está registrado.";
             }
-
+    
             $stmt = $this->conn->prepare("SELECT COUNT(*) FROM aprendices WHERE correo = ?");
             $stmt->execute([$data['correo']]);
             $countCorreo = $stmt->fetchColumn();
@@ -93,7 +104,7 @@ class Aprendizmodel
             if ($countCorreo > 0) {
                 return "El correo electrónico ya está registrado.";
             }
-
+    
             $stmt = $this->conn->prepare("SELECT COUNT(*) FROM aprendices WHERE telefono = ?");
             $stmt->execute([$data['telefono']]);
             $countTelefono = $stmt->fetchColumn();
@@ -101,11 +112,11 @@ class Aprendizmodel
             if ($countTelefono > 0) {
                 return "El número de teléfono ya está registrado.";
             }
-            
+    
             $sql = "INSERT INTO aprendices 
                     (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, id_tipo_documento, documento, telefono, correo, fecha_nacimiento, id_genero, id_grupo_sanguineo) 
                     VALUES (:primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :id_tipo_documento, :documento, :telefono, :correo, :fecha_nacimiento, :id_genero, :id_grupo_sanguineo)";
-            
+    
             $stmt = $this->conn->prepare($sql);
     
             $stmt->bindParam(":primer_nombre", $data['primer_nombre']);
@@ -138,6 +149,7 @@ class Aprendizmodel
             ])) {
                 return "Fallo al insertar en 'aprendiz_programa'. Error: " . implode(", ", $stmt2->errorInfo());
             }
+    
             return $id_aprendiz;
     
         } catch (Exception $e) {
@@ -147,7 +159,42 @@ class Aprendizmodel
     
     public function update($id_aprendiz, $data)
     {
-        try {
+        try {    
+            if (empty($data['primer_nombre']) || empty($data['documento']) || empty($data['telefono']) || empty($data['correo'])) {
+                return "Todos los campos obligatorios deben ser completados.";
+            }
+          
+            if (strlen($data['telefono']) != 10 || !is_numeric($data['telefono'])) {
+                return "El número de teléfono debe tener exactamente 10 dígitos y solo números.";
+            }
+    
+            if (!filter_var($data['correo'], FILTER_VALIDATE_EMAIL)) {
+                return "El correo electrónico no es válido.";
+            }
+    
+            $stmt = $this->conn->prepare("SELECT COUNT(*) FROM aprendices WHERE documento = ? AND id != ?");
+            $stmt->execute([$data['documento'], $id_aprendiz]);
+            $countDocumento = $stmt->fetchColumn();
+    
+            if ($countDocumento > 0) {
+                return "El número de documento ya está registrado con otro aprendiz.";
+            }
+    
+            $stmt = $this->conn->prepare("SELECT COUNT(*) FROM aprendices WHERE correo = ? AND id != ?");
+            $stmt->execute([$data['correo'], $id_aprendiz]);
+            $countCorreo = $stmt->fetchColumn();
+    
+            if ($countCorreo > 0) {
+                return "El correo electrónico ya está registrado con otro aprendiz.";
+            }
+    
+            $stmt = $this->conn->prepare("SELECT COUNT(*) FROM aprendices WHERE telefono = ? AND id != ?");
+            $stmt->execute([$data['telefono'], $id_aprendiz]);
+            $countTelefono = $stmt->fetchColumn();
+    
+            if ($countTelefono > 0) {
+                return "El número de teléfono ya está registrado con otro aprendiz.";
+            }
             $sql = "UPDATE aprendices SET 
                         primer_nombre = :primer_nombre,
                         segundo_nombre = :segundo_nombre,
@@ -179,23 +226,22 @@ class Aprendizmodel
             if (!$stmt->execute()) {
                 return "Error al actualizar 'aprendices': " . implode(", ", $stmt->errorInfo());
             }
-    
-            $sql2 = "UPDATE aprendiz_programa SET 
-                        id_programa_formacion = :id_programa,
-                        fecha_inicio = :fecha_inicio,
-                        fecha_fin = :fecha_fin
-                     WHERE id_aprendiz = :id_aprendiz";
-    
+                $sql2 = "UPDATE aprendiz_programa SET 
+                id_programa_formacion = ?, 
+                fecha_inicio = ?, 
+                fecha_fin = ?
+                WHERE id_aprendiz = ?";
+
             $stmt2 = $this->conn->prepare($sql2);
-            $stmt2->bindParam(":id_programa", $data['id_programa_formacion']);
-            $stmt2->bindParam(":fecha_inicio", $data['fecha_inicio']);
-            $stmt2->bindParam(":fecha_fin", $data['fecha_fin']);
-            $stmt2->bindParam(":id_aprendiz", $id_aprendiz, PDO::PARAM_INT);
-    
-            if (!$stmt2->execute()) {
-                return "Error al actualizar 'aprendiz_programa': " . implode(", ", $stmt2->errorInfo());
+            if (!$stmt2->execute([
+                $data['id_programa_formacion'],
+                $data['fecha_inicio'],
+                $data['fecha_fin'],
+                $id_aprendiz
+            ])) {
+                return "Error al actualizar el programa de formación: " . implode(", ", $stmt2->errorInfo());
             }
-    
+            
             return true;
     
         } catch (Exception $e) {
