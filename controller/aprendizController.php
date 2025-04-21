@@ -11,18 +11,27 @@
 
         public function guardarAprendiz($data) {
             try {
-            
+                if (empty($data['primer_nombre']) || empty($data['documento']) || empty($data['telefono']) || empty($data['correo'])) {
+                    exit('Todos los campos obligatorios deben ser completados.');
+                }
+                
+                if (strlen($data['telefono']) != 10 || !is_numeric($data['telefono'])) {
+                    exit('El número de teléfono debe tener exactamente 10 dígitos y solo números.');
+                }
+        
+                if (!filter_var($data['correo'], FILTER_VALIDATE_EMAIL)) {
+                    exit('El correo electrónico no es válido.');
+                }
                 $id = $this->aprendizModel->crearAprendiz($data);
+        
                 if ($id !== false && is_numeric($id)) {
                     header("Location: ../../view/aprendices/show.php?id_aprendiz=" . $id);
                     exit(); 
                 } else {
-                    
-                    exit('Error al guardar el aprendiz');
+                    exit('Error al guardar el aprendiz. ' . $id); 
                 }
             } catch (Exception $e) {
-                return "Error general: " . $e->getMessage();
-                exit();
+                exit('Error general: ' . $e->getMessage());
             }
         }
         
@@ -44,13 +53,35 @@
             }
         }
 
-        public function update($id, $data) {
+        public function update($id_aprendiz, $data) {
             try {
-                return ($this->aprendizModel->update($id, $data)) ? header("Location: show.php?id=". $id) : header("Location: index.php");
+                if (empty($data['primer_nombre']) || empty($data['documento']) || empty($data['telefono']) || empty($data['correo'])) {
+                    exit('Todos los campos obligatorios deben ser completados.');
+                }
+        
+                if (strlen($data['telefono']) != 10 || !is_numeric($data['telefono'])) {
+                    exit('El número de teléfono debe tener exactamente 10 dígitos.');
+                }
+        
+                if (!filter_var($data['correo'], FILTER_VALIDATE_EMAIL)) {
+                    exit('El correo electrónico no es válido.');
+                }
+        
+                $update = $this->aprendizModel->update($id_aprendiz, $data);
+
+                if ($update === true) {
+                    header("Location: ../../view/aprendices/show.php?id_aprendiz=" . $id_aprendiz);
+                    exit();
+                } else {
+                    exit($update); 
+                }
+                
+        
             } catch (Exception $e) {
-                return "Error: " . $e->getMessage();        
+                exit("Error general: " . $e->getMessage());
             }
         }
+        
 
         public function delete($id) {
             try {
